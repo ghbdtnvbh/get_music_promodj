@@ -7,7 +7,7 @@ from time import sleep
 ua = UserAgent()
 user_agent = ua.random
 links = []
-ids = []
+
 
 # Забираем ссылки на скачивание с двух первых страниц
 def get_links():
@@ -23,17 +23,14 @@ def get_links():
 def get_mp3():
     for i in range(len(links)):
         delay = randint(33,66)
-        print(f"спим {delay}")
         sleep(delay)
         headers = {
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
                 "User-Agent": user_agent
                 }
         ids = links[i].split('/')[4]
-        print(f'id - {ids}')
         r = requests.get(url=links[i], headers=headers, stream=True)
-        print(f'download {links[i]}')
-        with open (f"/home/pi/radio/music/test/{ids}.mp3", "wb") as f:
+        with open (f"/home/pi/radio/music/{ids}.mp3", "wb") as f:
             f.write(r.content)
         
 
