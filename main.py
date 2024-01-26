@@ -33,7 +33,7 @@ def get_mp3():
         print(f'id - {ids}')
         r = requests.get(url=links[i], headers=headers, stream=True)
         print(f'download {links[i]}')
-        with open (f"{ids}.mp3", "wb") as f:
+        with open (f"/home/pi/radio/music/test/{ids}.mp3", "wb") as f:
             f.write(r.content)
         
 
